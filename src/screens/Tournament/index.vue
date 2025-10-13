@@ -11,14 +11,18 @@
     </div>
 
     <div class="rests-container">
-      <TournamentRestItem position="top" v-if="firstRest" :rest-data="firstRest"/>
+      <Transition name="change-top">
+        <TournamentRestItem class="testt" :key="topRest.id" @click="selectItem('top')" position="top" v-if="topRest" :rest-data="topRest"/>
+      </Transition>
 
-      <TournamentRestItem position="bottom" v-if="secondRest" :rest-data="secondRest"/>
+      <Transition name="change-bottom">
+        <TournamentRestItem class="testt" :key="bottomRest.id" @click="selectItem('bottom')" position="bottom" v-if="bottomRest" :rest-data="bottomRest"/>
+      </Transition>
 
       <div class="rests-data">
         <div class="rest-data-column">
           <span class="rest-data-primary">
-            {{ firstRest?.avgCheck }} руб.
+            {{ topRest?.avgCheck }} руб.
           </span>
 
           <span class="rest-data-secondary">
@@ -26,13 +30,13 @@
           </span>
 
           <span class="rest-data-primary">
-            {{ secondRest?.avgCheck }} руб.
+            {{ bottomRest?.avgCheck }} руб.
           </span>
         </div>
 
         <div class="rest-data-column">
           <span class="rest-data-primary">
-            {{ firstRest?.minutesFromMetro }} мин
+            {{ topRest?.minutesFromMetro }} мин
           </span>
 
           <span class="rest-data-secondary">
@@ -40,13 +44,13 @@
           </span>
 
           <span class="rest-data-primary">
-            {{ secondRest?.minutesFromMetro }} мин
+            {{ bottomRest?.minutesFromMetro }} мин
           </span>
         </div>
 
         <div class="rest-data-column">
           <span class="rest-data-primary">
-            {{ firstRest?.schedule.sunday }}
+            {{ topRest?.schedule.sunday }}
           </span>
 
           <span class="rest-data-secondary">
@@ -54,7 +58,7 @@
           </span>
 
           <span class="rest-data-primary">
-            {{ secondRest?.schedule.sunday }}
+            {{ bottomRest?.schedule.sunday }}
           </span>
         </div>
       </div>
@@ -63,11 +67,11 @@
 </template>
 
 <script setup lang="ts">
-  import { computed } from 'vue';
+  import { computed, ref } from 'vue';
   import restaurants from './mocks';
   import ArrowBack from '@/assets/icons/arrow-back.svg';
   import TournamentRestItem from './RestItem';
-import { useRouter } from 'vue-router';
+  import { useRouter } from 'vue-router';
 
   defineOptions({
     name: 'TournamentScreen'
@@ -75,11 +79,26 @@ import { useRouter } from 'vue-router';
 
   const router = useRouter();
 
-  const firstRest = computed(() => restaurants[0]);
-  const secondRest = computed(() => restaurants[1]);
+  const lastRestIndex = ref(1);
+
+  const topRestIndex = ref(0);
+  const bottomRestIndex = ref(1);
+
+  const topRest = computed(() => restaurants[topRestIndex.value]);
+  const bottomRest = computed(() => restaurants[bottomRestIndex.value]);
 
   function goBack() {
     router.push({ name: 'vibes' }).catch(console.error);
+  }
+
+  function selectItem(number: 'top' | 'bottom') {
+    lastRestIndex.value += 1;
+
+    if (number === 'top') {
+      bottomRestIndex.value = lastRestIndex.value;
+    } else {
+      topRestIndex.value = lastRestIndex.value;
+    }
   }
 </script>
 
@@ -105,6 +124,7 @@ import { useRouter } from 'vue-router';
   } */
 
   .rests-container {
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -208,4 +228,87 @@ import { useRouter } from 'vue-router';
     font-size: 12px;
     color: #9CA3AF;
   }
+
+  .testt {
+    z-index: 4;
+  }
+
+
+  .change-top-enter-active {
+    animation: entertop 0.5s;
+  }
+
+  .change-top-leave-active {
+    animation: leavetop 0.5s;
+    position: absolute;
+    z-index: 5;
+    width: 100%;
+  }
+
+  .change-bottom-enter-active {
+    animation: enterbottom 0.5s;
+    z-index: 1;
+  }
+
+  .change-bottom-leave-active {
+    animation: leavebottom 0.5s;
+    position: absolute;
+    z-index: 5;
+    width: 100%;
+  }
+
+  @keyframes leavetop {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(0, -100%);
+    }
+  }
+
+  @keyframes entertop {
+    0% {
+      transform: translate(0, 100%);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+
+  @keyframes enterbottom {
+    0% {
+      transform: translate(0, -100%);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
+  }
+
+  @keyframes leavebottom {
+    0% {
+      transform: translate(0, 100%);
+    }
+    100% {
+      transform: translate(0, 200%);
+    }
+  }
+
+  /* @keyframes leave {
+    0% {
+      transform: translate(0, 0);
+    }
+    100% {
+      transform: translate(0, -100%);
+    }
+  }
+
+  @keyframes leavetop {
+    0% {
+      transform: translate(0, 100%);
+    }
+    100% {
+      transform: translate(0, 0);
+    }
+  } */
+
 </style>

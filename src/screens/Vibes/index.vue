@@ -2,6 +2,8 @@
   <div class="block">
     <div class="rows-block">
       <div :key="index" v-for="(vibes, index) in vibesArrays" class="row">
+        <div class="row-block-padding"/>
+
         <div
         v-for="{ id, text } in vibes"
         @click="toggle(id)"
@@ -15,10 +17,11 @@
       </div>
     </div>
 
-    <PVButton @click="goToTournament" severity="secondary" class="next-button" label="Продолжить"/>
-    <!-- <div @click="goToTournament" class="next-button"> -->
-      <!-- Продолжить -->
-    <!-- </div> -->
+    <PVButton
+    @click="goToTournament"
+    severity="secondary"
+    class="next-button"
+    label="Продолжить"/>
   </div>
 </template>
 
@@ -63,6 +66,8 @@
   const selectedIds = ref<string[]>([]);
 
   function toggle(id: string) {
+    navigator.vibrate(100);
+
     if (selectedIds.value.includes(id)) {
       selectedIds.value = selectedIds.value.filter((item) => item !== id);
     } else {
@@ -74,7 +79,6 @@
 
 <style scoped>
   .block {
-    padding: 10px;
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -88,17 +92,21 @@
     background-position: center;
   }
 
+  .row-block-padding {
+    width: 2px;
+  }
+
   .rows-block {
     display: flex;
     flex-direction: column;
     margin-top: auto;
-    gap: 8px;
-    margin-bottom: 50px;
+    gap: 4px;
+    margin-bottom: 80px;
   }
 
   .row {
     display: flex;
-    gap: 8px;
+    gap: 4px;
     overflow: auto;
   }
 
@@ -109,12 +117,12 @@
   .filter-button {
     color: rgba(255, 255, 255, 0.8);
     width: max-content;
-    outline: 1px rgba(255, 255, 255, 0.3) solid;
-    background-color: rgba(0, 0, 0, 0.4);
+    border: 2px rgba(255, 255, 255, 0.3) solid;
+    background-color: rgba(0, 0, 0, 0.6);
     height: 56px;
     white-space: nowrap;
     border-radius: 20px;
-    padding: 4px 12px;
+    padding: 2px 6px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -123,11 +131,12 @@
   }
 
   .filter-button--selected {
-    outline: 1px rgb(185, 185, 185) solid;
+    border: 2px rgb(185, 185, 185) solid;
     color: rgba(255, 255, 255, 1);
   }
 
   .next-button {
+    margin: 10px;
     /* border: 2px rgba(255, 255, 255, 0.4) solid; */
     /* color: white; */
     height: 60px;

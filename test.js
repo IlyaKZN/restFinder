@@ -1,0 +1,234 @@
+import fs from 'fs';
+import path from 'path';
+import fetch from 'node-fetch';
+
+const restaurants = [
+  {
+    id: 1,
+    name: "Бочка и Сковорода",
+    cuisines: ["Европейская", "Паб-кухня"],
+    avgCheck: 950,
+    minutesFromMetro: 6,
+    images: [
+      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600",
+      "https://images.unsplash.com/photo-1541544741938-0af808871cc0?w=600"
+    ],
+    schedule: {
+      monday: "09:00-23:00",
+      tuesday: "09:00-23:00",
+      wednesday: "09:00-23:00",
+      thursday: "09:00-23:00",
+      friday: "09:00-23:00",
+      saturday: "09:00-23:00",
+      sunday: "09:00-23:00"
+    }
+  },
+  {
+    id: 2,
+    name: "Суши на Набережной",
+    cuisines: ["Японская", "Морепродукты"],
+    avgCheck: 1400,
+    minutesFromMetro: 4,
+    images: [
+      "https://images.unsplash.com/photo-1553621042-f6e147245754?w=600",
+      "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=600",
+    ],
+    schedule: {
+      monday: "09:00-23:00",
+      tuesday: "09:00-23:00",
+      wednesday: "09:00-23:00",
+      thursday: "09:00-23:00",
+      friday: "09:00-23:00",
+      saturday: "09:00-23:00",
+      sunday: "09:00-23:00"
+    }
+  },
+  {
+    id: 4,
+    name: "Casa di Pasta",
+    cuisines: ["Итальянская", "Паста-бар"],
+    avgCheck: 1700,
+    minutesFromMetro: 8,
+    images: [
+      "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=600",
+      "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=600",
+      "https://images.unsplash.com/photo-1525610553991-2bede1a236e2?w=600"
+    ],
+    schedule: {
+      monday: "09:00-23:00",
+      tuesday: "09:00-23:00",
+      wednesday: "09:00-23:00",
+      thursday: "09:00-23:00",
+      friday: "09:00-23:00",
+      saturday: "09:00-23:00",
+      sunday: "09:00-23:00"
+    }
+  },
+  {
+    id: 3,
+    name: "Пельменная №7",
+    cuisines: ["Русская", "Вегетарианская"],
+    avgCheck: 450,
+    minutesFromMetro: 2,
+    images: [
+      "https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=600",
+    ],
+    schedule: {
+      monday: "09:00-23:00",
+      tuesday: "09:00-23:00",
+      wednesday: "09:00-23:00",
+      thursday: "09:00-23:00",
+      friday: "09:00-23:00",
+      saturday: "09:00-23:00",
+      sunday: "09:00-23:00"
+    }
+  },
+  {
+    id: 5,
+    name: "Шашлычный Двор",
+    cuisines: ["Кавказская", "Гриль"],
+    avgCheck: 1200,
+    minutesFromMetro: 12,
+    images: [
+      "https://images.unsplash.com/photo-1591181520189-abcb0735c65d?w=600",
+    ],
+    schedule: {
+      monday: "09:00-23:00",
+      tuesday: "09:00-23:00",
+      wednesday: "09:00-23:00",
+      thursday: "09:00-23:00",
+      friday: "09:00-23:00",
+      saturday: "09:00-23:00",
+      sunday: "09:00-23:00"
+    }
+  },
+  {
+    id: 6,
+    name: "Веганика",
+    cuisines: ["Веганская", "Здоровая еда"],
+    avgCheck: 800,
+    minutesFromMetro: 5,
+    images: [
+      "https://images.unsplash.com/photo-1506084868230-bb9d95c24759?w=600",
+      "https://images.unsplash.com/photo-1543353071-873f17a7a088?w=600"
+    ],
+    schedule: {
+      monday: "09:00-23:00",
+      tuesday: "09:00-23:00",
+      wednesday: "09:00-23:00",
+      thursday: "09:00-23:00",
+      friday: "09:00-23:00",
+      saturday: "09:00-23:00",
+      sunday: "09:00-23:00"
+    }
+  },
+  {
+    id: 7,
+    name: "Taco & Co",
+    cuisines: ["Мексиканская", "Фаст-кэжуал"],
+    avgCheck: 700,
+    minutesFromMetro: 3,
+    images: [
+      "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=600"
+    ],
+    schedule: {
+      monday: "09:00-23:00",
+      tuesday: "09:00-23:00",
+      wednesday: "09:00-23:00",
+      thursday: "09:00-23:00",
+      friday: "09:00-23:00",
+      saturday: "09:00-23:00",
+      sunday: "09:00-23:00"
+    }
+  },
+  {
+    id: 8,
+    name: "Le Fleur — Кафе и Десерты",
+    cuisines: ["Кондитерская", "Кафе"],
+    avgCheck: 600,
+    minutesFromMetro: 7,
+    images: [
+      "https://images.unsplash.com/photo-1521305916504-4a1121188589?w=600",
+      "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600",
+      "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600"
+    ],
+    schedule: {
+      monday: "09:00-23:00",
+      tuesday: "09:00-23:00",
+      wednesday: "09:00-23:00",
+      thursday: "09:00-23:00",
+      friday: "09:00-23:00",
+      saturday: "09:00-23:00",
+      sunday: "09:00-23:00"
+    }
+  },
+  {
+    id: 9,
+    name: "Grill & Wine",
+    cuisines: ["Стейк-хаус", "Винный бар"],
+    avgCheck: 2800,
+    minutesFromMetro: 10,
+    images: [
+      "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=600"
+    ],
+    schedule: {
+      monday: "09:00-23:00",
+      tuesday: "09:00-23:00",
+      wednesday: "09:00-23:00",
+      thursday: "09:00-23:00",
+      friday: "09:00-23:00",
+      saturday: "09:00-23:00",
+      sunday: "09:00-23:00"
+    }
+  },
+  {
+    id: 10,
+    name: "Стритфуд Маркет",
+    cuisines: ["Азиатская", "Фаст-фуд"],
+    avgCheck: 500,
+    minutesFromMetro: 15,
+    images: [],
+    schedule: {
+      monday: "09:00-23:00",
+      tuesday: "09:00-23:00",
+      wednesday: "09:00-23:00",
+      thursday: "09:00-23:00",
+      friday: "09:00-23:00",
+      saturday: "09:00-23:00",
+      sunday: "09:00-23:00"
+    }
+  }
+];
+
+// Папка для сохранения изображений
+const IMAGES_DIR = path.resolve('./images');
+
+// Создаем папку, если не существует
+if (!fs.existsSync(IMAGES_DIR)) {
+  fs.mkdirSync(IMAGES_DIR);
+}
+
+async function downloadImage(url, filename) {
+  const res = await fetch(url);
+  if (!res.ok) throw new Error(`Ошибка при скачивании ${url}: ${res.statusText}`);
+  const buffer = await res.arrayBuffer();
+  fs.writeFileSync(path.join(IMAGES_DIR, filename), Buffer.from(buffer));
+  console.log(`Скачано: ${filename}`);
+}
+
+async function main() {
+  for (const restaurant of restaurants) {
+    for (let i = 0; i < restaurant.images.length; i++) {
+      const url = restaurant.images[i];
+      const ext = path.extname(url.split('?')[0]) || '.jpg'; // на случай, если нет расширения
+      const filename = `${restaurant.id}_${i + 1}${ext}`;
+      try {
+        await downloadImage(url, filename);
+      } catch (err) {
+        console.error(err);
+      }
+    }
+  }
+}
+
+main();

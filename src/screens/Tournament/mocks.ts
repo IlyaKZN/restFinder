@@ -1,214 +1,191 @@
 const restaurants = [
   {
     id: 1,
-    name: "Бочка и Сковорода",
-    cuisines: ["Европейская", "Паб-кухня"],
+    name: 'Бочка и Сковорода',
+    cuisines: ['Европейская', 'Паб-кухня'],
     avgCheck: 950,
     minutesFromMetro: 6,
     images: [
-      "https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600",
-      "https://images.unsplash.com/photo-1527168027773-0cc890c2f3c8?w=600",
-      "https://images.unsplash.com/photo-1541544741938-0af808871cc0?w=600"
+      'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600',
+      'https://images.unsplash.com/photo-1541544741938-0af808871cc0?w=600',
     ],
     schedule: {
-      monday: "09:00-23:00",
-      tuesday: "09:00-23:00",
-      wednesday: "09:00-23:00",
-      thursday: "09:00-23:00",
-      friday: "09:00-23:00",
-      saturday: "09:00-23:00",
-      sunday: "09:00-23:00"
-    }
+      monday: '09:00-23:00',
+      tuesday: '09:00-23:00',
+      wednesday: '09:00-23:00',
+      thursday: '09:00-23:00',
+      friday: '09:00-23:00',
+      saturday: '09:00-23:00',
+      sunday: '09:00-23:00',
+    },
   },
   {
     id: 2,
-    name: "Суши на Набережной",
-    cuisines: ["Японская", "Морепродукты"],
+    name: 'Суши на Набережной',
+    cuisines: ['Японская', 'Морепродукты'],
     avgCheck: 1400,
     minutesFromMetro: 4,
     images: [
-      "https://images.unsplash.com/photo-1553621042-f6e147245754?w=600",
-      "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=600",
-      "https://images.unsplash.com/photo-1617196036861-0c34e7f89df1?w=600"
+      'https://images.unsplash.com/photo-1553621042-f6e147245754?w=600',
+      'https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=600',
     ],
     schedule: {
-      monday: "09:00-23:00",
-      tuesday: "09:00-23:00",
-      wednesday: "09:00-23:00",
-      thursday: "09:00-23:00",
-      friday: "09:00-23:00",
-      saturday: "09:00-23:00",
-      sunday: "09:00-23:00"
-    }
-  },
-  {
-    id: 3,
-    name: "Пельменная №7",
-    cuisines: ["Русская", "Вегетарианская"],
-    avgCheck: 450,
-    minutesFromMetro: 2,
-    images: [
-      "https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=600",
-      "https://images.unsplash.com/photo-1590080875832-8be53e4b0186?w=600",
-      "https://images.unsplash.com/photo-1589308078055-0d45d8aa8f6a?w=600"
-    ],
-    schedule: {
-      monday: "09:00-23:00",
-      tuesday: "09:00-23:00",
-      wednesday: "09:00-23:00",
-      thursday: "09:00-23:00",
-      friday: "09:00-23:00",
-      saturday: "09:00-23:00",
-      sunday: "09:00-23:00"
-    }
+      monday: '09:00-23:00',
+      tuesday: '09:00-23:00',
+      wednesday: '09:00-23:00',
+      thursday: '09:00-23:00',
+      friday: '09:00-23:00',
+      saturday: '09:00-23:00',
+      sunday: '09:00-23:00',
+    },
   },
   {
     id: 4,
-    name: "Casa di Pasta",
-    cuisines: ["Итальянская", "Паста-бар"],
+    name: 'Casa di Pasta',
+    cuisines: ['Итальянская', 'Паста-бар'],
     avgCheck: 1700,
     minutesFromMetro: 8,
     images: [
-      "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=600",
-      "https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=600",
-      "https://images.unsplash.com/photo-1525610553991-2bede1a236e2?w=600"
+      'https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=600',
+      'https://images.unsplash.com/photo-1504754524776-8f4f37790ca0?w=600',
+      'https://images.unsplash.com/photo-1525610553991-2bede1a236e2?w=600',
     ],
     schedule: {
-      monday: "09:00-23:00",
-      tuesday: "09:00-23:00",
-      wednesday: "09:00-23:00",
-      thursday: "09:00-23:00",
-      friday: "09:00-23:00",
-      saturday: "09:00-23:00",
-      sunday: "09:00-23:00"
-    }
+      monday: '09:00-23:00',
+      tuesday: '09:00-23:00',
+      wednesday: '09:00-23:00',
+      thursday: '09:00-23:00',
+      friday: '09:00-23:00',
+      saturday: '09:00-23:00',
+      sunday: '09:00-23:00',
+    },
+  },
+  {
+    id: 3,
+    name: 'Пельменная №7',
+    cuisines: ['Русская', 'Вегетарианская'],
+    avgCheck: 450,
+    minutesFromMetro: 2,
+    images: ['https://images.unsplash.com/photo-1589302168068-964664d93dc0?w=600'],
+    schedule: {
+      monday: '09:00-23:00',
+      tuesday: '09:00-23:00',
+      wednesday: '09:00-23:00',
+      thursday: '09:00-23:00',
+      friday: '09:00-23:00',
+      saturday: '09:00-23:00',
+      sunday: '09:00-23:00',
+    },
   },
   {
     id: 5,
-    name: "Шашлычный Двор",
-    cuisines: ["Кавказская", "Гриль"],
+    name: 'Шашлычный Двор',
+    cuisines: ['Кавказская', 'Гриль'],
     avgCheck: 1200,
     minutesFromMetro: 12,
-    images: [
-      "https://images.unsplash.com/photo-1591181520189-abcb0735c65d?w=600",
-      "https://images.unsplash.com/photo-1625944230945-4f7037c8b2a3?w=600",
-      "https://images.unsplash.com/photo-1601050690597-3e5f1e0e4d1e?w=600"
-    ],
+    images: ['https://images.unsplash.com/photo-1591181520189-abcb0735c65d?w=600'],
     schedule: {
-      monday: "09:00-23:00",
-      tuesday: "09:00-23:00",
-      wednesday: "09:00-23:00",
-      thursday: "09:00-23:00",
-      friday: "09:00-23:00",
-      saturday: "09:00-23:00",
-      sunday: "09:00-23:00"
-    }
+      monday: '09:00-23:00',
+      tuesday: '09:00-23:00',
+      wednesday: '09:00-23:00',
+      thursday: '09:00-23:00',
+      friday: '09:00-23:00',
+      saturday: '09:00-23:00',
+      sunday: '09:00-23:00',
+    },
   },
   {
     id: 6,
-    name: "Веганика",
-    cuisines: ["Веганская", "Здоровая еда"],
+    name: 'Веганика',
+    cuisines: ['Веганская', 'Здоровая еда'],
     avgCheck: 800,
     minutesFromMetro: 5,
     images: [
-      "https://images.unsplash.com/photo-1565958011702-44e7b9b3b06e?w=600",
-      "https://images.unsplash.com/photo-1506084868230-bb9d95c24759?w=600",
-      "https://images.unsplash.com/photo-1543353071-873f17a7a088?w=600"
+      'https://images.unsplash.com/photo-1506084868230-bb9d95c24759?w=600',
+      'https://images.unsplash.com/photo-1543353071-873f17a7a088?w=600',
     ],
     schedule: {
-      monday: "09:00-23:00",
-      tuesday: "09:00-23:00",
-      wednesday: "09:00-23:00",
-      thursday: "09:00-23:00",
-      friday: "09:00-23:00",
-      saturday: "09:00-23:00",
-      sunday: "09:00-23:00"
-    }
+      monday: '09:00-23:00',
+      tuesday: '09:00-23:00',
+      wednesday: '09:00-23:00',
+      thursday: '09:00-23:00',
+      friday: '09:00-23:00',
+      saturday: '09:00-23:00',
+      sunday: '09:00-23:00',
+    },
   },
   {
     id: 7,
-    name: "Taco & Co",
-    cuisines: ["Мексиканская", "Фаст-кэжуал"],
+    name: 'Taco & Co',
+    cuisines: ['Мексиканская', 'Фаст-кэжуал'],
     avgCheck: 700,
     minutesFromMetro: 3,
-    images: [
-      "https://images.unsplash.com/photo-1601924582971-44a7f3c1b9f9?w=600",
-      "https://images.unsplash.com/photo-1582456891925-9c0c03e7bb94?w=600",
-      "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=600"
-    ],
+    images: ['https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=600'],
     schedule: {
-      monday: "09:00-23:00",
-      tuesday: "09:00-23:00",
-      wednesday: "09:00-23:00",
-      thursday: "09:00-23:00",
-      friday: "09:00-23:00",
-      saturday: "09:00-23:00",
-      sunday: "09:00-23:00"
-    }
+      monday: '09:00-23:00',
+      tuesday: '09:00-23:00',
+      wednesday: '09:00-23:00',
+      thursday: '09:00-23:00',
+      friday: '09:00-23:00',
+      saturday: '09:00-23:00',
+      sunday: '09:00-23:00',
+    },
   },
   {
     id: 8,
-    name: "Le Fleur — Кафе и Десерты",
-    cuisines: ["Кондитерская", "Кафе"],
+    name: 'Le Fleur — Кафе и Десерты',
+    cuisines: ['Кондитерская', 'Кафе'],
     avgCheck: 600,
     minutesFromMetro: 7,
     images: [
-      "https://images.unsplash.com/photo-1521305916504-4a1121188589?w=600",
-      "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600",
-      "https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600"
+      'https://images.unsplash.com/photo-1521305916504-4a1121188589?w=600',
+      'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=600',
+      'https://images.unsplash.com/photo-1578985545062-69928b1d9587?w=600',
     ],
     schedule: {
-      monday: "09:00-23:00",
-      tuesday: "09:00-23:00",
-      wednesday: "09:00-23:00",
-      thursday: "09:00-23:00",
-      friday: "09:00-23:00",
-      saturday: "09:00-23:00",
-      sunday: "09:00-23:00"
-    }
+      monday: '09:00-23:00',
+      tuesday: '09:00-23:00',
+      wednesday: '09:00-23:00',
+      thursday: '09:00-23:00',
+      friday: '09:00-23:00',
+      saturday: '09:00-23:00',
+      sunday: '09:00-23:00',
+    },
   },
   {
     id: 9,
-    name: "Grill & Wine",
-    cuisines: ["Стейк-хаус", "Винный бар"],
+    name: 'Grill & Wine',
+    cuisines: ['Стейк-хаус', 'Винный бар'],
     avgCheck: 2800,
     minutesFromMetro: 10,
-    images: [
-      "https://images.unsplash.com/photo-1600891964315-60e6c1a3dbff?w=600",
-      "https://images.unsplash.com/photo-1617196036861-0c34e7f89df1?w=600",
-      "https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=600"
-    ],
+    images: ['https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=600'],
     schedule: {
-      monday: "09:00-23:00",
-      tuesday: "09:00-23:00",
-      wednesday: "09:00-23:00",
-      thursday: "09:00-23:00",
-      friday: "09:00-23:00",
-      saturday: "09:00-23:00",
-      sunday: "09:00-23:00"
-    }
+      monday: '09:00-23:00',
+      tuesday: '09:00-23:00',
+      wednesday: '09:00-23:00',
+      thursday: '09:00-23:00',
+      friday: '09:00-23:00',
+      saturday: '09:00-23:00',
+      sunday: '09:00-23:00',
+    },
   },
   {
     id: 10,
-    name: "Стритфуд Маркет",
-    cuisines: ["Азиатская", "Фаст-фуд"],
+    name: 'Стритфуд Маркет',
+    cuisines: ['Азиатская', 'Фаст-фуд'],
     avgCheck: 500,
     minutesFromMetro: 15,
-    images: [
-      "https://images.unsplash.com/photo-1601050690597-3e5f1e0e4d1e?w=600",
-      "https://images.unsplash.com/photo-1590080875832-8be53e4b0186?w=600",
-      "https://images.unsplash.com/photo-1601924582971-44a7f3c1b9f9?w=600"
-    ],
+    images: [],
     schedule: {
-      monday: "09:00-23:00",
-      tuesday: "09:00-23:00",
-      wednesday: "09:00-23:00",
-      thursday: "09:00-23:00",
-      friday: "09:00-23:00",
-      saturday: "09:00-23:00",
-      sunday: "09:00-23:00"
-    }
-  }
-];
+      monday: '09:00-23:00',
+      tuesday: '09:00-23:00',
+      wednesday: '09:00-23:00',
+      thursday: '09:00-23:00',
+      friday: '09:00-23:00',
+      saturday: '09:00-23:00',
+      sunday: '09:00-23:00',
+    },
+  },
+]
 
 export default restaurants;
