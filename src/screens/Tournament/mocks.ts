@@ -23,7 +23,7 @@ const restaurants = [
     id: 2,
     name: 'Суши на Набережной',
     cuisines: ['Японская', 'Морепродукты'],
-    avgCheck: 1400,
+    avgCheck: 0,
     minutesFromMetro: 4,
     images: [
       'https://images.unsplash.com/photo-1553621042-f6e147245754?w=600',

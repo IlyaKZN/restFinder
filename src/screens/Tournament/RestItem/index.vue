@@ -97,7 +97,6 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    /* background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%); */
   }
 
   .splide {
@@ -111,13 +110,13 @@
   .rest-data {
     position: absolute;
     z-index: 10;
-    bottom: 50px;
+    bottom: 60px;
     left: 20px;
     pointer-events: none;
   }
 
   .rest-data--bottom {
-    top: 50px;
+    top: 60px;
   }
 
   .rest-name {

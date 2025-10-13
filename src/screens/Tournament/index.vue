@@ -21,45 +21,57 @@
 
       <div class="rests-data">
         <div class="rest-data-column">
-          <span class="rest-data-primary">
-            {{ topRest?.avgCheck }} руб.
-          </span>
+          <Transition mode="out-in" name="fade">
+            <span :key="topRest?.id" class="rest-data-primary">
+              {{ topRest?.avgCheck }} руб.
+            </span>
+          </Transition>
 
           <span class="rest-data-secondary">
             Чек
           </span>
 
-          <span class="rest-data-primary">
-            {{ bottomRest?.avgCheck }} руб.
-          </span>
+          <Transition mode="out-in" name="fade">
+            <span :key="bottomRest?.id" class="rest-data-primary">
+              {{ bottomRest?.avgCheck }} руб.
+            </span>
+          </Transition>
         </div>
 
         <div class="rest-data-column">
-          <span class="rest-data-primary">
-            {{ topRest?.minutesFromMetro }} мин
-          </span>
+          <Transition mode="out-in" name="fade">
+            <span :key="topRest?.id" class="rest-data-primary">
+              {{ topRest?.minutesFromMetro }} мин
+            </span>
+          </Transition>
 
           <span class="rest-data-secondary">
             От метро
           </span>
 
-          <span class="rest-data-primary">
-            {{ bottomRest?.minutesFromMetro }} мин
-          </span>
+          <Transition mode="out-in" name="fade">
+            <span :key="bottomRest?.id" class="rest-data-primary">
+              {{ bottomRest?.minutesFromMetro }} мин
+            </span>
+          </Transition>
         </div>
 
         <div class="rest-data-column">
-          <span class="rest-data-primary">
-            {{ topRest?.schedule.sunday }}
-          </span>
+          <Transition mode="out-in" name="fade">
+            <span :key="topRest?.id" class="rest-data-primary">
+              {{ topRest?.schedule.sunday }}
+            </span>
+          </Transition>
 
           <span class="rest-data-secondary">
             График
           </span>
 
-          <span class="rest-data-primary">
-            {{ bottomRest?.schedule.sunday }}
-          </span>
+          <Transition mode="out-in" name="fade">
+            <span :key="bottomRest?.id" class="rest-data-primary">
+              {{ bottomRest?.schedule.sunday }}
+            </span>
+          </Transition>
         </div>
       </div>
     </div>
@@ -182,7 +194,7 @@
     width: calc(100% - 20px);
     z-index: 10;
     position: absolute;
-    height: 70px;
+    height: 90px;
     background-color: #1a1a1a;
     border: 1px solid #2A2A2A;
     border-radius: 16px;
@@ -199,6 +211,7 @@
     justify-content: space-between;
     height: calc(100% - 8px);
     position: absolute;
+    width: 120px;
   }
 
   .rest-data-column:nth-of-type(1) {
@@ -219,13 +232,13 @@
 
   .rest-data-primary {
     font-weight: 500;
-    font-size: 14px;
+    font-size: 18px;
     color: #F5F5F5;
   }
 
   .rest-data-secondary {
     font-weight: 400;
-    font-size: 12px;
+    font-size: 14px;
     color: #9CA3AF;
   }
 
@@ -293,22 +306,13 @@
     }
   }
 
-  /* @keyframes leave {
-    0% {
-      transform: translate(0, 0);
-    }
-    100% {
-      transform: translate(0, -100%);
-    }
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 0.2s ease;
   }
 
-  @keyframes leavetop {
-    0% {
-      transform: translate(0, 100%);
-    }
-    100% {
-      transform: translate(0, 0);
-    }
-  } */
-
+  .fade-enter-from,
+  .fade-leave-to {
+    opacity: 0;
+  }
 </style>
