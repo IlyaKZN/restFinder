@@ -169,23 +169,23 @@ const restaurants = [
       sunday: '09:00-23:00',
     },
   },
-  {
-    id: 10,
-    name: 'Стритфуд Маркет',
-    cuisines: ['Азиатская', 'Фаст-фуд'],
-    avgCheck: 500,
-    minutesFromMetro: 15,
-    images: [],
-    schedule: {
-      monday: '09:00-23:00',
-      tuesday: '09:00-23:00',
-      wednesday: '09:00-23:00',
-      thursday: '09:00-23:00',
-      friday: '09:00-23:00',
-      saturday: '09:00-23:00',
-      sunday: '09:00-23:00',
-    },
-  },
+  // {
+  //   id: 10,
+  //   name: 'Стритфуд Маркет',
+  //   cuisines: ['Азиатская', 'Фаст-фуд'],
+  //   avgCheck: 500,
+  //   minutesFromMetro: 15,
+  //   images: [],
+  //   schedule: {
+  //     monday: '09:00-23:00',
+  //     tuesday: '09:00-23:00',
+  //     wednesday: '09:00-23:00',
+  //     thursday: '09:00-23:00',
+  //     friday: '09:00-23:00',
+  //     saturday: '09:00-23:00',
+  //     sunday: '09:00-23:00',
+  //   },
+  // },
 ]
 
 export default restaurants;

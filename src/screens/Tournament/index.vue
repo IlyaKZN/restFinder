@@ -103,7 +103,19 @@
     router.push({ name: 'vibes' }).catch(console.error);
   }
 
+  function endTournamentHandler(winnerRestId: number) {
+    router.push({ name: 'restaurant', params: { id: winnerRestId } })
+  }
+
   function selectItem(number: 'top' | 'bottom') {
+    if (lastRestIndex.value === restaurants.length - 1) {
+      const winnerId = number === 'top' ? topRest.value!.id : bottomRest.value!.id;
+
+      endTournamentHandler(winnerId);
+
+      return;
+    }
+
     lastRestIndex.value += 1;
 
     if (number === 'top') {
@@ -126,15 +138,6 @@
     background-position: center;
   }
 
-  /* .splide {
-    height: 200px;
-  } */
-
-  /* .splide__slide {
-    height: 100px;
-    width: 200px;
-  } */
-
   .rests-container {
     overflow: hidden;
     display: flex;
@@ -146,7 +149,6 @@
   .rest-container {
     overflow: hidden;
     flex-grow: 1;
-    /* background-color: burlywood; */
   }
 
   .header {
@@ -182,13 +184,13 @@
     color: black;
   }
 
-  .rest-image {
+  /* .rest-image {
     height: calc((100vh - 50px) / 2);
     object-fit: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-  }
+  } */
 
   .rests-data {
     width: calc(100% - 20px);
@@ -201,7 +203,7 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 4px 20px;
+    padding: 6px 20px;
   }
 
   .rest-data-column {
@@ -209,7 +211,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    height: calc(100% - 8px);
+    height: calc(100% - 12px);
     position: absolute;
     width: 120px;
   }

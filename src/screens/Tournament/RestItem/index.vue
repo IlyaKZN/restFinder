@@ -4,100 +4,72 @@
   :class="{
     'rest-container--bottom': position === 'bottom',
   }">
-    <div ref="slider" class="splide">
-      <div class="splide__track">
-        <ul class="splide__list">
-          <li :key="index" v-for="(image, index) in restData.images" class="splide__slide">
-            <div class="rest-image" :style="{
-              backgroundImage: `url(${image})`
-            }"/>
-
-            <div
-            class="overlay"
-            :class="{
-              'overlay--bottom': position === 'bottom'
-            }"/>
-          </li>
-        </ul>
-      </div>
-    </div>
+    <CarouselComponent :pagination-pos="position" :images="restData.images"/>
 
     <div
-    class="rest-data"
+    class="overlay"
     :class="{
-      'rest-data--bottom': position === 'bottom',
-    }"
-    >
-      <span class="rest-name">
-        {{ restData.name }}
-      </span>
+      'overlay--bottom': position === 'bottom'
+    }"/>
 
-      <div class="rest-cuisines-container">
-        <span class="rest-cuisine" :key="cuisine" v-for="cuisine in restData.cuisines">
-          {{ cuisine }}
-        </span>
-      </div>
-    </div>
+    <div
+        class="rest-data"
+            :class="{
+                  'rest-data--bottom': position === 'bottom',
+                      }"
+                          >
+                                <span class="rest-name">
+                                        {{ restData.name }}
+                                              </span>
+
+                                                    <div class="rest-cuisines-container">
+                                                            <span class="rest-cuisine" :key="cuisine" v-for="cuisine in restData.cuisines">
+                                                                      {{ cuisine }}
+                                                                              </span>
+                                                                                    </div>
+                                                                                        </div>
   </div>
 </template>
 
 <script setup lang="ts">
-  import { onMounted, useTemplateRef } from 'vue';
   import type { TRestItem } from '@/types';
-  import Splide from '@splidejs/splide';
+  import CarouselComponent from '@/components/Carousel';
 
 
   defineOptions({
     name: 'TournamentRestItem',
   })
 
-  const { restData } = defineProps<{
+  const { restData, position } = defineProps<{
     restData: TRestItem,
     position: 'top' | 'bottom',
   }>();
-
-  const sliderRef = useTemplateRef('slider');
-
-  onMounted(() => {
-    if (!sliderRef.value) return;
-
-    new Splide(sliderRef.value, {
-      type: 'loop',
-      perPage: 1,
-      autoplay: false,
-      arrows: false,
-    }).mount();
-  })
 </script>
 
 <style>
   .rest-container {
     position: relative;
 
-    .splide__pagination {
+    /* .splide__pagination {
       height: max-content;
       top: 24px;
-    }
+    } */
   }
 
-  .rest-container--bottom {
+  /* .rest-container--bottom {
     .splide__pagination {
       top: auto;
       bottom: 24px;
     }
-  }
+  } */
 
-  .splide__slide {
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.7) 100%);
-  }
-
-  .rest-image {
+  /* .rest-image {
     height: calc((100vh - 50px) / 2);
     object-fit: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-  }
+  } */
 
   .splide {
     position: absolute;
@@ -142,6 +114,7 @@
     width: 100%;
     height: 100%;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 1) 100%);
+    pointer-events: none;
   }
 
   .overlay--bottom {

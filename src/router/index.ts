@@ -1,5 +1,6 @@
 import VibesScreen from '@/screens/Vibes'
 import TournamentScreen from '@/screens/Tournament'
+import RestaurantScreen from '@/screens/Restaurant'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -14,7 +15,12 @@ const router = createRouter({
       name: 'tournament',
       path: '/tournament',
       component: TournamentScreen,
-    }
+    },
+    {
+      name: 'restaurant',
+      path: '/restaurant/:id',
+      component: RestaurantScreen,
+    },
   ],
 })
 
