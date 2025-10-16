@@ -4,7 +4,7 @@
 
     <div class="restaurant-screen__content" v-else>
       <div class="restaurant-screen__preview">
-        <CarouselComponent :images="restaurant.images"/>
+        <CarouselComponent class="restaurant-screen__preview-carousel" :images="restaurant.images"/>
 
         <div class="restaurant-screen__preview-overlay"/>
 
@@ -21,68 +21,81 @@
         </div>
       </div>
 
-      <div class="restaurant-screen__info-data">
-        <div class="restaurant-screen__info-data-row">
-          <div class="restaurant-screen__info-icon-container"/>
+      <div class="restaurant-screen__info-labels-container">
+        <div class="restaurant-screen__info-label restaurant-screen__info-label--green">
+          {{ `₽ ${restaurant.avgCheck}` }}
+        </div>
 
-          <div class="restaurant-screen__info-data-row-column">
-            <span class="restaurant-screen__info-text--primary">{{ restaurant.avgCheck }}₽</span>
+        <div class="restaurant-screen__info-label restaurant-screen__info-label--blue">
+          <div class="restaurant-screen__info-label-icon restaurant-screen__info-label-icon--blue" v-html="trainIcon"/>
 
-            <span class="restaurant-screen__info-text--secondary">Средний чек</span>
+          {{ `${restaurant.minutesFromMetro} мин от метро` }}
+        </div>
+
+        <div class="restaurant-screen__info-label restaurant-screen__info-label--purple">
+          <div class="restaurant-screen__info-label-icon restaurant-screen__info-label-icon--purple" v-html="clockIcon"/>
+
+          {{ `${restaurant.schedule.monday}` }}
+        </div>
+      </div>
+
+      <div class="restaurant-screen__info-container">
+        <span class="restaurant-screen__info-title">
+          О ресторане
+        </span>
+
+
+        <div class="restaurant-screen__info-description">
+          <span>
+            Аутентичная итальянская кухня в современной интерпретации в самом центре города. Наши шеф-повара готовят исключительные блюда, используя свежие местные ингредиенты
+          </span>
+        </div>
+
+        <span class="restaurant-screen__info-title">
+          Локация & Контакты
+        </span>
+
+        <div class="restaurant-screen__data-container">
+          <div class="restaurant-screen__data">
+            <div class="restaurant-screen__data-icon-background">
+              <div class="restaurant-screen__data-icon" v-html="locationIcon"/>
+            </div>
+
+            <div class="restaurant-screen__data-text-container">
+              <span>
+                Тверская улица, 15
+              </span>
+            </div>
+          </div>
+
+          <div class="restaurant-screen__data">
+            <div class="restaurant-screen__data-icon-background">
+              <div class="restaurant-screen__data-icon" v-html="callIcon"/>
+            </div>
+
+            <div class="restaurant-screen__data-text-container">
+              <span>
+                +7 (495) 123-45-67
+              </span>
+            </div>
           </div>
         </div>
 
-        <div class="restaurant-screen__info-data-row">
-          <div class="restaurant-screen__info-icon-container"/>
+        <PVButton class="restaurant-screen__button restaurant-screen__button--book-table">
+          <div class="restaurant-screen__button-content">
+            <div class="restaurant-screen__button-icon" v-html="calendarAddIcon"/>
 
-          <div class="restaurant-screen__info-data-row-column">
-            <span class="restaurant-screen__info-text--primary">{{ restaurant.avgCheck }}₽</span>
-
-            <span class="restaurant-screen__info-text--secondary">Средний чек</span>
+            Забронировать
           </div>
-        </div>
+        </PVButton>
 
-        <div class="restaurant-screen__info-data-row">
-          <div class="restaurant-screen__info-icon-container"/>
+        <PVButton class="restaurant-screen__button restaurant-screen__button--telegram">
+          <div class="restaurant-screen__button-content">
+            <div class="restaurant-screen__button-icon" v-html="shareIcon"/>
 
-          <div class="restaurant-screen__info-data-row-column">
-            <span class="restaurant-screen__info-text--primary">{{ restaurant.avgCheck }}₽</span>
-
-            <span class="restaurant-screen__info-text--secondary">Средний чек</span>
+            Поделиться в Telegram
           </div>
-        </div>
-        <!-- <div class="restaurant-screen__info-data-column">
-          <div class="restaurant-screen__info-icon-container">
-
-          </div>
-
-          <span class="restaurant-screen__info-text--primary">{{ restaurant.avgCheck }}₽</span>
-
-          <span class="restaurant-screen__info-text--secondary">Средний чек</span>
-        </div>
-
-        <div class="restaurant-screen__info-data-column">
-          <div class="restaurant-screen__info-icon-container">
-
-          </div>
-
-          <span class="restaurant-screen__info-text--primary">{{ restaurant.minutesFromMetro }}мин</span>
-
-          <span class="restaurant-screen__info-text--secondary">От метро</span>
-        </div>
-
-        <div class="restaurant-screen__info-data-column">
-          <div class="restaurant-screen__info-icon-container">
-
-          </div>
-
-          <div class="restaurant-screen__info-time-container">
-            <span class="restaurant-screen__info-time">11:00 -</span>
-            <span class="restaurant-screen__info-time">23:00</span>
-          </div>
-
-          <span class="restaurant-screen__info-text--secondary">График</span>
-        </div> -->
+        </PVButton>
       </div>
     </div>
   </div>
@@ -95,6 +108,12 @@
   import { ref } from 'vue';
   import PreloaderComponent from '@/components/Preloader';
   import CarouselComponent from '@/components/Carousel';
+  import trainIcon from '@/assets/icons/train.svg?raw';
+  import clockIcon from '@/assets/icons/clock.svg?raw';
+  import locationIcon from '@/assets/icons/location.svg?raw';
+  import callIcon from '@/assets/icons/call.svg?raw';
+  import calendarAddIcon from '@/assets/icons/calendar-add.svg?raw';
+  import shareIcon from '@/assets/icons/share.svg?raw';
 
   defineOptions({
     name: 'RestaurantScreen',
@@ -132,10 +151,16 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    overflow: auto;
+  }
+
+  .restaurant-screen__content::-webkit-scrollbar {
+    display: none;
   }
 
   .restaurant-screen__preview {
     position: relative;
+    min-height: 320px;
     height: 320px;
     margin-bottom: 32px;
   }
@@ -177,73 +202,138 @@
     content: ' • ';
   }
 
-  /* .restaurant-screen__info-data {
-    display: flex;
+  .restaurant-screen__info-labels-container {
     width: 100%;
-    justify-content: space-between;
-    padding: 0 20px;
-  } */
-
-  .restaurant-screen__info-data {
+    padding: 0 16px;
     display: flex;
-    flex-direction: column;
-    width: 100%;
-    justify-content: space-between;
-    padding: 0 20px;
-    gap: 12px;
+    flex-wrap: wrap;
+    column-gap: 6px;
+    row-gap: 8px;
+    margin-bottom: 16px;
   }
 
-  .restaurant-screen__info-data-column {
+  .restaurant-screen__info-label {
+    padding: 0 16px;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    width: 100px;
+    justify-content: center;
+    font-weight: 500;
+    width: max-content;
+    height: 36px;
+    font-size: 14px;
+    border-radius: 18px;
+    gap: 4px
   }
 
-  /* .restaurant-screen__info-icon-container {
-    width: 48px;
-    height: 48px;
-    background-color: #F2F2F7;
-    border-radius: 100%;
-    margin-bottom: 8px;
-  } */
+  .restaurant-screen__info-label--green {
+    background-color: #DCFCE7;
+    color: #166534;
+  }
 
-  .restaurant-screen__info-text--primary {
+  .restaurant-screen__info-label--blue {
+    background-color: #DBEAFE;
+    color: #1E40AF;
+  }
+
+  .restaurant-screen__info-label--purple {
+    background-color: #F3E8FF;
+    color: #6B21A8;
+  }
+
+  .restaurant-screen__info-label-icon {
+    height: 20px;
+    width: 20px;
+  }
+
+  .restaurant-screen__info-label-icon--blue {
+    fill: #1E40AF;
+  }
+
+  .restaurant-screen__info-label-icon--purple {
+    fill: #6B21A8;
+  }
+
+  .restaurant-screen__info-container {
+    padding: 0 24px;
+  }
+
+  .restaurant-screen__info-title {
+    font-size: 20px;
+    color: black;
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .restaurant-screen__info-description {
     font-size: 16px;
-    color: black;
-    margin-bottom: 2px;
-  }
-
-  .restaurant-screen__info-text--secondary {
-    font-size: 14px;
     color: #8E8E93;
+    margin-bottom: 12px;
   }
 
-  .restaurant-screen__info-time-container {
+  .restaurant-screen__data-container {
+    width: 100%;
     display: flex;
     flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
   }
 
-  .restaurant-screen__info-time {
-    font-size: 14px;
+  .restaurant-screen__data {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .restaurant-screen__data-icon-background {
+    height: 32px;
+    width: 32px;
+    border-radius: 100%;
+    background-color: #F2F2F7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .restaurant-screen__data-icon {
+    height: 20px;
+    width: 20px;
+    fill: #007AFF;
+  }
+
+  .restaurant-screen__data-text-container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
     color: black;
   }
 
-  .restaurant-screen__info-data-row {
+  .restaurant-screen__button {
+    width: 100%;
+    height: 80px;
+    border-radius: 24px;
+    color: white;
+    font-size: 18px;
+    margin-bottom: 16px;
+  }
+
+  .restaurant-screen__button-content {
     display: flex;
-    gap: 12px;
     align-items: center;
+    gap: 10px;
   }
 
-  .restaurant-screen__info-icon-container {
-    width: 32px;
-    height: 32px;
-    background-color: #F2F2F7;
-    border-radius: 100%;
+  .restaurant-screen__button-icon {
+    height: 24px;
+    width: 24px;
+    fill: white;
   }
 
-  .restaurant-screen__info-data-row-column {
-    display: flex;
-    flex-direction: column;
+  .restaurant-screen__button--book-table {
+    background: linear-gradient(90deg, #10B981 0%, #10B981 100%);
+  }
+
+  .restaurant-screen__button--telegram {
+    background: linear-gradient(90deg, #0f98dd 0%, #0088cc 100%);
   }
 </style>

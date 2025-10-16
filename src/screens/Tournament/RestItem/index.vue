@@ -61,6 +61,8 @@
   .rest-container {
     position: relative;
     transition: transform 0.3s ease;
+    height: 100%;
+    width: 100%;
   }
 
   .rest-container--select {

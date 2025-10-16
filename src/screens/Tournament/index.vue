@@ -11,18 +11,23 @@
     </div>
 
     <div class="rests-container">
-      <Transition name="change-top">
-        <TournamentRestItem class="testt" :key="topRest.id" @click="selectItem('top')" position="top" v-if="topRest" :rest-data="topRest"/>
-      </Transition>
+      <div class="rest-container-wrapper">
+        <Transition mode="out-in" name="fade">
+          <TournamentRestItem class="testt" :key="topRest.id" @click="selectItem('top')" position="top" v-if="topRest" :rest-data="topRest"/>
+        </Transition>
 
-      <Transition name="change-bottom">
-        <TournamentRestItem class="testt" :key="bottomRest.id" @click="selectItem('bottom')" position="bottom" v-if="bottomRest" :rest-data="bottomRest"/>
-      </Transition>
+      </div>
+
+      <div class="rest-container-wrapper">
+        <Transition mode="out-in" name="fade">
+          <TournamentRestItem class="testt" :key="bottomRest.id" @click="selectItem('bottom')" position="bottom" v-if="bottomRest" :rest-data="bottomRest"/>
+        </Transition>
+      </div>
 
       <div class="rests-data">
         <div class="rest-data-column">
-          <Transition mode="out-in" name="fade">
-            <span :key="topRest?.id" class="rest-data-primary">
+          <Transition  mode="out-in" name="fade">
+            <span v-if="topRest" class="rest-data-primary">
               {{ topRest?.avgCheck }} руб.
             </span>
           </Transition>
@@ -32,7 +37,7 @@
           </span>
 
           <Transition mode="out-in" name="fade">
-            <span :key="bottomRest?.id" class="rest-data-primary">
+            <span v-if="bottomRest" class="rest-data-primary rest-data-primary--bottom">
               {{ bottomRest?.avgCheck }} руб.
             </span>
           </Transition>
@@ -40,7 +45,7 @@
 
         <div class="rest-data-column">
           <Transition mode="out-in" name="fade">
-            <span :key="topRest?.id" class="rest-data-primary">
+            <span v-if="topRest" class="rest-data-primary">
               {{ topRest?.minutesFromMetro }} мин
             </span>
           </Transition>
@@ -50,7 +55,7 @@
           </span>
 
           <Transition mode="out-in" name="fade">
-            <span :key="bottomRest?.id" class="rest-data-primary">
+            <span v-if="bottomRest" class="rest-data-primary rest-data-primary--bottom">
               {{ bottomRest?.minutesFromMetro }} мин
             </span>
           </Transition>
@@ -58,7 +63,7 @@
 
         <div class="rest-data-column">
           <Transition mode="out-in" name="fade">
-            <span :key="topRest?.id" class="rest-data-primary">
+            <span v-if="topRest" class="rest-data-primary">
               {{ topRest?.schedule.sunday }}
             </span>
           </Transition>
@@ -68,7 +73,7 @@
           </span>
 
           <Transition mode="out-in" name="fade">
-            <span :key="bottomRest?.id" class="rest-data-primary">
+            <span v-if="bottomRest" class="rest-data-primary rest-data-primary--bottom">
               {{ bottomRest?.schedule.sunday }}
             </span>
           </Transition>
@@ -84,6 +89,7 @@
   import ArrowBack from '@/assets/icons/arrow-back.svg';
   import TournamentRestItem from './RestItem';
   import { useRouter } from 'vue-router';
+  import type { TRestItem } from '@/types';
 
   defineOptions({
     name: 'TournamentScreen'
@@ -93,11 +99,10 @@
 
   const lastRestIndex = ref(1);
 
-  const topRestIndex = ref(0);
-  const bottomRestIndex = ref(1);
+  const topRest = ref<TRestItem | null>(restaurants[0]!);
+  const bottomRest = ref<TRestItem | null>(restaurants[1]!);
 
-  const topRest = computed(() => restaurants[topRestIndex.value]);
-  const bottomRest = computed(() => restaurants[bottomRestIndex.value]);
+  const isLoading = ref(false);
 
   function goBack() {
     router.push({ name: 'vibes' }).catch(console.error);
@@ -119,9 +124,17 @@
     lastRestIndex.value += 1;
 
     if (number === 'top') {
-      bottomRestIndex.value = lastRestIndex.value;
+      bottomRest.value = null;
+
+      setTimeout(() => {
+        bottomRest.value = restaurants[lastRestIndex.value]!;
+      }, 300);
     } else {
-      topRestIndex.value = lastRestIndex.value;
+      topRest.value = null;
+
+      setTimeout(() => {
+        topRest.value = restaurants[lastRestIndex.value]!;
+      }, 300);
     }
   }
 </script>
@@ -144,6 +157,11 @@
     flex-direction: column;
     height: 100%;
     position: relative;
+  }
+
+  .rest-container-wrapper {
+    flex-grow: 1;
+    width: 100%;
   }
 
   .rest-container {
@@ -183,14 +201,6 @@
   .splide__list {
     color: black;
   }
-
-  /* .rest-image {
-    height: calc((100vh - 50px) / 2);
-    object-fit: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  } */
 
   .rests-data {
     width: calc(100% - 20px);
@@ -238,10 +248,19 @@
     color: #F5F5F5;
   }
 
+  .rest-data-primary--bottom {
+    margin-top: auto;
+  }
+
   .rest-data-secondary {
     font-weight: 400;
     font-size: 14px;
     color: #9CA3AF;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: max-content;
   }
 
   .testt {
