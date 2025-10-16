@@ -1,8 +1,10 @@
 <template>
   <div
+  @click="selectHandler"
   class="rest-container"
   :class="{
     'rest-container--bottom': position === 'bottom',
+    'rest-container--select': isSelectAnim,
   }">
     <CarouselComponent :pagination-pos="position" :images="restData.images"/>
 
@@ -13,28 +15,27 @@
     }"/>
 
     <div
-        class="rest-data"
-            :class="{
-                  'rest-data--bottom': position === 'bottom',
-                      }"
-                          >
-                                <span class="rest-name">
-                                        {{ restData.name }}
-                                              </span>
+    class="rest-data"
+    :class="{
+      'rest-data--bottom': position === 'bottom',
+    }">
+      <span class="rest-name">
+        {{ restData.name }}
+      </span>
 
-                                                    <div class="rest-cuisines-container">
-                                                            <span class="rest-cuisine" :key="cuisine" v-for="cuisine in restData.cuisines">
-                                                                      {{ cuisine }}
-                                                                              </span>
-                                                                                    </div>
-                                                                                        </div>
+      <div class="rest-cuisines-container">
+        <span class="rest-cuisine" :key="cuisine" v-for="cuisine in restData.cuisines">
+          {{ cuisine }}
+        </span>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
+  import { ref } from 'vue';
   import type { TRestItem } from '@/types';
   import CarouselComponent from '@/components/Carousel';
-
 
   defineOptions({
     name: 'TournamentRestItem',
@@ -44,32 +45,27 @@
     restData: TRestItem,
     position: 'top' | 'bottom',
   }>();
+
+  const isSelectAnim = ref(false);
+
+  function selectHandler() {
+    isSelectAnim.value = true;
+
+    setTimeout(() => {
+      isSelectAnim.value = false;
+    }, 200);
+  }
 </script>
 
 <style>
   .rest-container {
     position: relative;
-
-    /* .splide__pagination {
-      height: max-content;
-      top: 24px;
-    } */
+    transition: transform 0.3s ease;
   }
 
-  /* .rest-container--bottom {
-    .splide__pagination {
-      top: auto;
-      bottom: 24px;
-    }
-  } */
-
-  /* .rest-image {
-    height: calc((100vh - 50px) / 2);
-    object-fit: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-  } */
+  .rest-container--select {
+    transform: scale(1.2);
+  }
 
   .splide {
     position: absolute;

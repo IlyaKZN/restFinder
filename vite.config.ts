@@ -8,6 +8,14 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 export default defineConfig({
   server: {
     port: 9000,
+    // proxy: {
+    //   '/api': {
+    //     target: `${env.PROXY}`,
+    //     secure: false,
+    //     ws: true,
+    //     changeOrigin: true,
+    //   },
+    // },
   },
   plugins: [vue(), vueDevTools()],
   resolve: {
