@@ -1,5 +1,9 @@
 <template>
-  <div class="block">
+  <div class="block"
+  :style="{
+    background: `linear-gradient(180deg,rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 80%, rgba(0, 0, 0, 0.9) 100%),
+      url('../../../images/background.avif')`,
+  }">
     <div class="rows-block">
       <div :key="index" v-for="(vibes, index) in vibesArrays" class="row">
         <div class="row-block-padding"/>
@@ -84,9 +88,6 @@
     display: flex;
     flex-direction: column;
     justify-content: end;
-    background:
-    linear-gradient(180deg,rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 80%, rgba(0, 0, 0, 0.9) 100%),
-    url('https://images.unsplash.com/photo-1567880905822-56f8e06fe630?q=80&w=735&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
