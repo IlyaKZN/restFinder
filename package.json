@@ -19,6 +19,7 @@
     "@splidejs/splide": "^4.1.4",
     "material-symbols": "^0.36.2",
     "node-fetch": "^3.3.2",
+    "node-telegram-bot-api": "^0.66.0",
     "pinia": "^3.0.3",
     "primevue": "^4.4.1",
     "vue": "^3.5.22",

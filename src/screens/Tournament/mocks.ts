@@ -5,7 +5,7 @@ const restaurants = [
     cuisines: ['Европейская', 'Паб-кухня'],
     avgCheck: 950,
     minutesFromMetro: 6,
-    images: ['../../../images/1_1.jpg', '../../../images/1_3.jpg'],
+    images: ['@/images/1_1.jpg', '@/images/1_3.jpg'],
     schedule: {
       monday: '09:00-23:00',
       tuesday: '09:00-23:00',
@@ -22,7 +22,7 @@ const restaurants = [
     cuisines: ['Японская', 'Морепродукты'],
     avgCheck: 0,
     minutesFromMetro: 4,
-    images: ['../../../images/2_1.jpg', '../../../images/2_2.jpg'],
+    images: ['@/images/2_1.jpg', '@/images/2_2.jpg'],
     schedule: {
       monday: '09:00-23:00',
       tuesday: '09:00-23:00',
@@ -39,7 +39,7 @@ const restaurants = [
     cuisines: ['Итальянская', 'Паста-бар'],
     avgCheck: 1700,
     minutesFromMetro: 8,
-    images: ['../../../images/4_1.jpg', '../../../images/4_2.jpg', '../../../images/4_3.jpg'],
+    images: ['@/images/4_1.jpg', '@/images/4_2.jpg', '@/images/4_3.jpg'],
     schedule: {
       monday: '09:00-23:00',
       tuesday: '09:00-23:00',
@@ -56,7 +56,7 @@ const restaurants = [
     cuisines: ['Русская', 'Вегетарианская'],
     avgCheck: 450,
     minutesFromMetro: 2,
-    images: ['../../../images/3_1.jpg'],
+    images: ['@/images/3_1.jpg'],
     schedule: {
       monday: '09:00-23:00',
       tuesday: '09:00-23:00',
@@ -73,7 +73,7 @@ const restaurants = [
     cuisines: ['Кавказская', 'Гриль'],
     avgCheck: 1200,
     minutesFromMetro: 12,
-    images: ['../../../images/5_1.jpg'],
+    images: ['@/images/5_1.jpg'],
     schedule: {
       monday: '09:00-23:00',
       tuesday: '09:00-23:00',
@@ -90,7 +90,7 @@ const restaurants = [
     cuisines: ['Веганская', 'Здоровая еда'],
     avgCheck: 800,
     minutesFromMetro: 5,
-    images: ['../../../images/6_2.jpg', '../../../images/6_3.jpg'],
+    images: ['@/images/6_2.jpg', '@/images/6_3.jpg'],
     schedule: {
       monday: '09:00-23:00',
       tuesday: '09:00-23:00',
@@ -107,7 +107,7 @@ const restaurants = [
     cuisines: ['Мексиканская', 'Фаст-кэжуал'],
     avgCheck: 700,
     minutesFromMetro: 3,
-    images: ['../../../images/7_3.jpg'],
+    images: ['@/images/7_3.jpg'],
     schedule: {
       monday: '09:00-23:00',
       tuesday: '09:00-23:00',
@@ -124,7 +124,7 @@ const restaurants = [
     cuisines: ['Кондитерская', 'Кафе'],
     avgCheck: 600,
     minutesFromMetro: 7,
-    images: ['../../../images/8_1.jpg', '../../../images/8_2.jpg', '../../../images/8_3.jpg'],
+    images: ['@/images/8_1.jpg', '@/images/8_2.jpg', '@/images/8_3.jpg'],
     schedule: {
       monday: '09:00-23:00',
       tuesday: '09:00-23:00',
@@ -141,7 +141,7 @@ const restaurants = [
     cuisines: ['Стейк-хаус', 'Винный бар'],
     avgCheck: 2800,
     minutesFromMetro: 10,
-    images: ['../../../images/9_3.jpg'],
+    images: ['@/images/9_3.jpg'],
     schedule: {
       monday: '09:00-23:00',
       tuesday: '09:00-23:00',
