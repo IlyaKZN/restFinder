@@ -2,7 +2,7 @@
   <div class="block"
   :style="{
     background: `linear-gradient(180deg,rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 80%, rgba(0, 0, 0, 0.9) 100%),
-      url('@/images/background.avif')`,
+      url('${background}')`,
   }">
     <div class="rows-block">
       <div :key="index" v-for="(vibes, index) in vibesArrays" class="row">
@@ -32,6 +32,7 @@
 <script lang="ts" setup>
   import { ref } from 'vue';
   import { useRouter } from 'vue-router';
+  import background from '@/images/background.avif';
 
 
   defineOptions({
